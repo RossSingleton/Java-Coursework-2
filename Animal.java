@@ -1,14 +1,14 @@
 /*
- * Name: ???
- * Student number: ???
+ * Name: Ross Singleton
+ * Student number: C1615528
  */
 
 /*
  * A class to represent a number of instances of a zoo animal.
  */
 public class Animal {
-    // Define fields here
-	// to be completed
+    private final String animalName;
+    private int inTotalNumAnimals;
 
 	/*
 	 * Constructor method for creating an animal with a given name
@@ -19,7 +19,8 @@ public class Animal {
 	 * an appropriate error message.
 	 */
 	public Animal( String inName, int inTotalNumAnimals ) {
-		// to be completed
+		animalName = inName;
+		this.inTotalNumAnimals = inTotalNumAnimals;
 	}
 
 	/*
