@@ -7,8 +7,9 @@
  * A class to represent a number of instances of a zoo animal.
  */
 public class Animal {
-    private final String animalName;
-    private int inTotalNumAnimals;
+    private String animalName;
+    private int totalAnimals;
+    private int loanTotal;
 
 	/*
 	 * Constructor method for creating an animal with a given name
@@ -19,15 +20,20 @@ public class Animal {
 	 * an appropriate error message.
 	 */
 	public Animal( String inName, int inTotalNumAnimals ) {
-		animalName = inName;
-		this.inTotalNumAnimals = inTotalNumAnimals;
+		if (inTotalNumAnimals < 1) {
+			throw new IllegalArgumentException("Error, number of animals is less than 1");
+		}
+
+		this.animalName = inName;
+		this.totalAnimals = inTotalNumAnimals;
+		this.loanTotal = 0;
 	}
 
 	/*
 	 * An accessor method that returns the animals name.
 	 */
 	public String getName() {
-		// to be completed
+		return animalName;
 	}
 
 	/*
@@ -35,7 +41,7 @@ public class Animal {
 	 * This should count both animal on loan to other collections and returned animals from other collections.
 	 */ 
 	public int getTotalAnimals() {
-		// to be completed
+		return totalAnimals;
 	}
 
 	/*
@@ -43,7 +49,7 @@ public class Animal {
 	 * (i.e., not on loan to another collection).
 	 */
 	public int getAvailableAnimals() {
-		// to be completed
+		return totalAnimals - loanTotal;
 	}
 
 	/*
@@ -52,7 +58,11 @@ public class Animal {
 	 * throw an IllegalStateException with an appropriate error message.
 	 */
 	public void loanAnimal() {
-		// to be completed
+		if (getAvailableAnimals() < 1) {
+			throw new IllegalStateException("Error, no animals to loan");
+		}
+
+		loanTotal = loanTotal + 1;
 	}
 
 	/*
@@ -61,7 +71,11 @@ public class Animal {
 	 * should throw an IllegalStateException with an appropriate error message.
 	 */
 	public void returnAnimal() {
-		// to be completed
+		if (loanTotal < 1) {
+			throw new IllegalStateException("Error, no animals on loan");
+		}
+
+		loanTotal = loanTotal - 1;
 	}
 }
 
